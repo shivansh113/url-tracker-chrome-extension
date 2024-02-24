@@ -1,5 +1,20 @@
-let inputBttn = document.getElementById("input-bttn")
+const inputBttn = document.getElementById("input-bttn")
+let myInfo = []
+const inputEl = document.getElementById("input-el")
+const ulEl = document.getElementById("ul-el")
 
 inputBttn.addEventListener("click", function () {
-    console.log("Button Clicked")
+    myInfo.push(inputEl.value)
+    inputEl.value = ""
+    render()
 })
+
+function render() {
+    let listItems = ""
+    for (let i = 0; i < myInfo.length;i++) {
+        listItems += "<li>" + myInfo[i] + "</li>";
+    }
+
+    ulEl.innerHTML = listItems
+
+}
