@@ -3,9 +3,17 @@ let myInfo = []
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
 
+let infoFromLoccalStorage = JSON.parse(localStorage.getItem("myInfo"))
+
+if (infoFromLoccalStorage) {
+    myInfo = infoFromLoccalStorage
+    render()
+}
+
 inputBttn.addEventListener("click", function () {
     myInfo.push(inputEl.value)
     inputEl.value = ""
+    localStorage.setItem("myInfo", JSON.stringify(myInfo))
     render()
 })
 
