@@ -12,7 +12,13 @@ inputBttn.addEventListener("click", function () {
 function render() {
     let listItems = ""
     for (let i = 0; i < myInfo.length;i++) {
-        listItems += "<li>" + myInfo[i] + "</li>";
+
+        listItems += `
+        <li>
+            <a target ='_blank' href='${myInfo[i]}'>
+                ${myInfo[i]}
+            </a>
+        </li>`;
     }
 
     ulEl.innerHTML = listItems
