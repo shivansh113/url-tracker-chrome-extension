@@ -7,30 +7,17 @@ const infoFromLoccalStorage = JSON.parse(localStorage.getItem("myInfo"))
 
 if (infoFromLoccalStorage) {
     myInfo = infoFromLoccalStorage
-    render()
+    render(myInfo)
 }
 
-inputBttn.addEventListener("click", function () {
-    myInfo.push(inputEl.value)
-    inputEl.value = ""
-    localStorage.setItem("myInfo", JSON.stringify(myInfo))
-    render()
-})
-
-deleteBttn.addEventListener("dblclick", function () {
-    localStorage.clear()
-    myInfo = []
-    render()
-})
-
-function render() {
+function render(info) {
     let listItems = ""
-    for (let i = 0; i < myInfo.length;i++) {
+    for (let i = 0; i < info.length;i++) {
 
         listItems += `
         <li>
-            <a target ='_blank' href='${myInfo[i]}'>
-                ${myInfo[i]}
+            <a target ='_blank' href='${info[i]}'>
+                ${info[i]}
             </a>
         </li>`;
     }
@@ -38,3 +25,17 @@ function render() {
     ulEl.innerHTML = listItems
 
 }
+
+inputBttn.addEventListener("click", function () {
+    myInfo.push(inputEl.value)
+    inputEl.value = ""
+    localStorage.setItem("myInfo", JSON.stringify(myInfo))
+    render(myInfo)
+})
+
+deleteBttn.addEventListener("dblclick", function () {
+    localStorage.clear()
+    myInfo = []
+    render(myInfo)
+})
+
