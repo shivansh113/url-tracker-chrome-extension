@@ -3,6 +3,7 @@ let myInfo = []
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
 const deleteBttn = document.getElementById("delete-bttn")
+const tabBttn = document.getElementById("tab-bttn")
 const infoFromLoccalStorage = JSON.parse(localStorage.getItem("myInfo"))
 
 if (infoFromLoccalStorage) {
@@ -37,5 +38,13 @@ deleteBttn.addEventListener("dblclick", function () {
     localStorage.clear()
     myInfo = []
     render(myInfo)
+})
+
+tabBttn.addEventListener("click", function() {
+    chrome.tabs.query({active:true, currentWindow: true}, function(tabs) {
+        myInfo.push(tabs[0].url)
+        localStorage.setItem("myInfo", JSON.stringify(myInfo))
+        render(myInfo)
+    })    
 })
 
